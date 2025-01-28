@@ -20,7 +20,8 @@ jobs:
         include:
           - application: ethstats-server
             image_name: ethstats-server
-            path: .
+            file: Dockerfile
+            context: "."
             tag_length: 8
             tag_latest: true
     env:
