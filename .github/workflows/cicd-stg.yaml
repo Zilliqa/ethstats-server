@@ -21,10 +21,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        application: [ethstats-server]
+        application: [zilstats-server]
         include:
-          - application: ethstats-server
-            image_name: ethstats-server
+          - application: zilstats-server
+            image_name: zilstats-server
             file: Dockerfile
             context: "."
             tag_length: 8
