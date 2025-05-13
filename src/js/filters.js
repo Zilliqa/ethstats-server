@@ -36,6 +36,21 @@ angular.module('netStatsApp.filters', [])
 		return peerClass(peers, active);
 	};
 })
+.filter('currentViewClass', function() {
+	return function(currentView, active) {
+		return currentViewClass(currentView, active);
+	};
+})
+.filter('nextViewChangeClass', function() {
+	return function(nextViewChange, active) {
+		return nextViewChangeClass(nextViewChange, active);
+	};
+})
+.filter('highQcViewClass', function() {
+	return function(highQcView, active) {
+		return highQcViewClass(highQcView, active);
+	};
+})
 .filter('miningClass', function() {
 	return function(mining, active) {
 		if(! active)
@@ -280,7 +295,7 @@ angular.module('netStatsApp.filters', [])
 })
 .filter('blockTimeFilter', function() {
 	return function(timestamp) {
-		if(timestamp === 0)
+		if(timestamp === 0 || timestamp === '0')
 			return '∞';
 
 		// var time = Math.floor((new Date()).getTime() / 1000);
@@ -291,6 +306,19 @@ angular.module('netStatsApp.filters', [])
 			return Math.round(diff) + ' s ago';
 
 		return moment.duration(Math.round(diff), 's').humanize() + ' ago';
+	};
+})
+.filter('formatTimeFilter', function() {
+	return function(timestamp) {
+		if(timestamp === 0 || timestamp === null || timestamp === '')
+			return '∞';
+		
+		const totalSeconds = Math.floor(timestamp / 1000);
+		const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+		const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+		const seconds = String(totalSeconds % 60).padStart(2, '0');
+
+		return `${hours}:${minutes}:${seconds}`;
 	};
 })
 .filter('networkHashrateFilter', ['$sce', '$filter', function($sce, filter) {
@@ -602,6 +630,30 @@ function peerClass(peers, active)
 		return 'text-gray';
 
 	return (peers <= 1 ? 'text-danger' : (peers > 1 && peers < 4 ? 'text-warning' : 'text-success'));
+}
+
+function currentViewClass(currentView, active)
+{
+	if( ! active)
+		return 'text-gray';
+
+	return (currentView <= 0 ? 'text-danger' : 'text-success');
+}
+
+function nextViewChangeClass(nextViewChange, active)
+{
+	if( ! active)
+		return 'text-gray';
+ 
+	return 'text-success';
+}
+
+function highQcViewClass(highQcView, active)
+{
+	if( ! active)
+		return 'text-gray';
+
+	return (highQcView <= 0 ? 'text-danger' : 'text-success');
 }
 
 function timeClass(timestamp)

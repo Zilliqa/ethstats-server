@@ -278,6 +278,9 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 						$scope.nodes[index].stats.mining = data.stats.mining;
 						$scope.nodes[index].stats.hashrate = data.stats.hashrate;
 						$scope.nodes[index].stats.peers = data.stats.peers;
+						$scope.nodes[index].stats.currentView = data.stats.currentView;
+						$scope.nodes[index].stats.nextViewChange = data.stats.nextViewChange;
+						$scope.nodes[index].stats.highQcView = data.stats.highQcView;
 						$scope.nodes[index].stats.gasPrice = data.stats.gasPrice;
 						$scope.nodes[index].stats.uptime = data.stats.uptime;
 
