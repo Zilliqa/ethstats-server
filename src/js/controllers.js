@@ -1,4 +1,3 @@
-
 /* Controllers */
 
 netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, socket, _, toastr) {
@@ -259,8 +258,13 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				{
 					var node = $scope.nodes[index];
 
-					if( !_.isUndefined(node) && !_.isUndefined(node.stats.pending) && !_.isUndefined(data.pending) )
-						$scope.nodes[index].stats.pending = data.pending;
+					if( !_.isUndefined(node) && !_.isUndefined(node.stats) )
+					{
+						if( !_.isUndefined(data.pending) )
+							$scope.nodes[index].stats.pending = data.pending;
+						if( !_.isUndefined(data.queued) )
+							$scope.nodes[index].stats.queued = data.queued;
+					}
 				}
 
 				break;
