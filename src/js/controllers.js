@@ -295,6 +295,11 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 							latencyFilter($scope.nodes[index]);
 						}
 
+						if( !_.isUndefined(data.stats.pending) )
+							$scope.nodes[index].stats.pending = data.stats.pending;
+						if( !_.isUndefined(data.stats.queued) )
+							$scope.nodes[index].stats.queued = data.stats.queued;
+
 						updateActiveNodes();
 					}
 				}
