@@ -83,7 +83,7 @@ block content
       div.col-xs-2.stat-holder
         div.big-info.chart.text-info
           i.icon-difficulty
-          span.small-title gas limit
+          span.small-title view number
           sparkchart.big-details.spark-difficulty(data="{{lastGasLimit.join(',')}}")
           div.clearfix
       div.col-xs-2.stat-holder.xpull-right
@@ -110,7 +110,7 @@ block content
             th.th-latency
               i.icon-clock(data-toggle="tooltip", data-placement="top", title="Node latency", ng-click="orderTable(['stats.latency'], false)")
             th
-              i.icon-mining(data-toggle="tooltip", data-placement="top", title="Is staking", ng-click="orderTable(['-stats.hashrate'], false)")
+              i.icon-mining(data-toggle="tooltip", data-placement="top", title="Is proposing", ng-click="orderTable(['-stats.hashrate'], false)")
             th
               i.icon-group(data-toggle="tooltip", data-placement="top", title="Peers", ng-click="orderTable(['-stats.peers'], false)")
             th
@@ -121,7 +121,7 @@ block content
               i.icon-block(data-toggle="tooltip", data-placement="top", title="Last block", ng-click="orderTable(['-stats.block.number', 'stats.block.propagation'], false)")
             th.th-blockhash &nbsp;
             th.th-blockhash
-              i.icon-difficulty(data-toggle="tooltip", data-placement="top", title="View number and length", ng-click="orderTable(['-stats.currentView'], false)")
+              i.icon-difficulty(data-toggle="tooltip", data-placement="top", title="View number and timer", ng-click="orderTable(['-stats.currentView'], false)")
             th.th-blockhash &nbsp;
             th
               i.icon-uncle(data-toggle="tooltip", data-placement="top", title="highQC view number", ng-click="orderTable(['-stats.highQcView'], false)")
